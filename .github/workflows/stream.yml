@@ -1,0 +1,11 @@
+name: YouTube Live
+on: workflow_dispatch
+jobs:
+  streaming:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install FFmpeg
+        run: sudo apt install -y ffmpeg
+      - name: Start Live
+        run: |
+          ffmpeg -re -i "https://www.youtube.com/live/MaQ8_yGHsTk?si=S0rr223JBzGRn81n" -c:v libx264 -preset veryfast -b:v 2500k -c:a aac -ar 44100 -f flv "rtmp://a.rtmp.youtube.com/live2/Q12g-s6wc-0y03-0ua5-6e6p"
